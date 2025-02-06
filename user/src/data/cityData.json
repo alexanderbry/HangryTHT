@@ -1,0 +1,12 @@
+[
+  { "id": 1, "name": "Jakarta" },
+  { "id": 2, "name": "Surabaya" },
+  { "id": 3, "name": "Bandung" },
+  { "id": 4, "name": "Medan" },
+  { "id": 5, "name": "Semarang" },
+  { "id": 6, "name": "Makassar" },
+  { "id": 7, "name": "Yogyakarta" },
+  { "id": 8, "name": "Palembang" },
+  { "id": 9, "name": "Balikpapan" },
+  { "id": 10, "name": "Denpasar" }
+]
