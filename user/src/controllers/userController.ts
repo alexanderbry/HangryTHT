@@ -1,5 +1,5 @@
 import { Request, Response, NextFunction } from "express";
-import { userSchema } from "../schemas/userSchema";
+import { loginSchema, registerSchema } from "../schemas/userSchema";
 import { UserService } from "../services/userService";
 
 class UserController {
@@ -9,7 +9,7 @@ class UserController {
     next: NextFunction
   ): Promise<any> {
     try {
-      const { error, value } = userSchema.validate(req.body);
+      const { error, value } = registerSchema.validate(req.body);
 
       if (error) {
         return res.status(401).json({
@@ -21,7 +21,33 @@ class UserController {
 
       const data = await UserService.register(value);
 
-      if (data.error) throw data.error;
+      res.status(data.status).json({
+        status: data.status,
+        message: data.message,
+        data: data.data,
+      });
+    } catch (error) {
+      next(error);
+    }
+  }
+
+  static async login(
+    req: Request,
+    res: Response,
+    next: NextFunction
+  ): Promise<any> {
+    try {
+      const { error, value } = loginSchema.validate(req.body);
+
+      if (error) {
+        return res.status(401).json({
+          status: 401,
+          message: error.message,
+          data: null,
+        });
+      }
+
+      const data = await UserService.login(value);
 
       res.status(data.status).json({
         status: data.status,

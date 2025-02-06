@@ -1,4 +1,5 @@
-import { hashPassword } from "../helpers/bcrypt";
+import { comparePassword, hashPassword } from "../helpers/bcrypt";
+import { createToken } from "../helpers/jsonwebtoken";
 import { createUser, findByEmail } from "../repository/userRepository";
 
 export class UserService {
@@ -24,6 +25,34 @@ export class UserService {
         status: 201,
         message: "User registered successfully",
         data: data,
+      };
+    } catch (error) {
+      return {
+        error,
+      };
+    }
+  }
+
+  static async login(payload: any): Promise<any> {
+    try {
+      let { email, password } = payload;
+
+      const isValidUser = await findByEmail(email);
+      if (!isValidUser) throw { name: "InvalidEmail/Password" };
+
+      const isValidPassword = await comparePassword(password, isValidUser.password);
+      if (!isValidPassword) throw { name: "InvalidEmail/Password" };
+      
+      const data = {
+        id: isValidUser.id,
+      }
+      
+      const token = await createToken(data);
+
+      return {
+        status: 200,
+        message: "Login success",
+        data: token,
       };
     } catch (error) {
       return {

@@ -19,6 +19,5 @@ AppDataSource.initialize()
     app.listen(port, () => {
       console.log("User is running on http://localhost:" + port);
     });
-    console.log("Data Source has been initialized!");
   })
   .catch((error) => console.log(error));

@@ -1,7 +1,7 @@
 import Joi from "joi";
 import { UserType } from "../types/types";
 
-export const userSchema = Joi.object({
+export const registerSchema = Joi.object({
   email: Joi.string().email().required().messages({
     "string.empty": "Email is required",
     "string.email": "Invalid email format",
@@ -31,5 +31,18 @@ export const userSchema = Joi.object({
     "number.base": "City ID must be an integer",
     "number.integer": "City ID must be an integer",
     "any.required": "City ID is required",
+  }),
+});
+
+export const loginSchema = Joi.object({
+  email: Joi.string().email().required().messages({
+    "string.empty": "Email is required",
+    "string.email": "Invalid email format",
+  }),
+
+  password: Joi.string().min(8).max(32).required().messages({
+    "string.empty": "Password is required",
+    "string.min": "Password must be at least 8 characters",
+    "string.max": "Password must not exceed 32 characters",
   }),
 });
