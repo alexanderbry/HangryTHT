@@ -1,6 +1,7 @@
+import e from "express";
 import { comparePassword, hashPassword } from "../helpers/bcrypt";
 import { createToken } from "../helpers/jsonwebtoken";
-import { createUser, findByEmail } from "../repository/userRepository";
+import { createUser, findByEmail, findById } from "../repository/userRepository";
 
 export class UserService {
   static async register(payload: any): Promise<any> {
@@ -53,6 +54,25 @@ export class UserService {
         status: 200,
         message: "Login success",
         data: token,
+      };
+    } catch (error) {
+      return {
+        error,
+      };
+    }
+  }
+
+  static async getUserById(payload: any): Promise<any> {
+    try {
+      let { id } = payload;
+
+      const user = await findById(id);
+      if (!user) throw { name: "Not Found" };
+
+      return {
+        status: 200,
+        message: null,
+        data: user,
       };
     } catch (error) {
       return {

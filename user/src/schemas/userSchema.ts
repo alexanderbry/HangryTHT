@@ -46,3 +46,11 @@ export const loginSchema = Joi.object({
     "string.max": "Password must not exceed 32 characters",
   }),
 });
+
+export const getUserByIdSchema = Joi.object({
+  id: Joi.number().integer().required().messages({
+    "number.base": "ID must be an integer",
+    "number.integer": "ID must be an integer",
+    "any.required": "ID is required",
+  }),
+});

@@ -19,6 +19,7 @@ const errorHandler: ErrorRequestHandler = (err, req, res, next) => {
       status = 401;
       message = "Email or password is incorrect";
       break;
+    case "RangeError":
     case "Not Found":
       status = 404;
       message = "Data not found";

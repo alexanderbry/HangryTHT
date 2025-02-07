@@ -27,3 +27,13 @@ export async function findByEmail(email: string): Promise<User | null> {
     return error;
   }
 }
+
+export async function findById(id: number): Promise<User | null> {
+  try {
+    const user = await userRepository.findOne({ where: { id } });
+    
+    return user;
+  } catch (error) {
+    return error;
+  }
+}
