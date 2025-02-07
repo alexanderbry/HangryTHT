@@ -1,14 +1,10 @@
 import { Entity, PrimaryGeneratedColumn, Column } from 'typeorm';
-
-export enum PromotionType {
-  PERCENTAGE = 'percentage',
-  FIXED = 'fixed',
-}
+import { PromotionType } from '../types/types';
 
 @Entity()
 export class Promotion {
   @PrimaryGeneratedColumn()
-  id: string;
+  id: number;
 
   @Column({ nullable: false, unique: true })
   name: string;
