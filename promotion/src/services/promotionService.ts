@@ -38,7 +38,6 @@ export class PromotionService {
       const availablePromotion = await fetch(`http://localhost:3000/user/${id}`);
       if(!availablePromotion) throw { name : "NoPromotion" };
 
-
       return {
         status: 20,
         message: "Promotion created",
