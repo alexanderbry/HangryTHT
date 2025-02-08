@@ -1,4 +1,5 @@
 import { createPromotion, findByName } from "../repository/promotionRepository";
+import fetch from 'node-fetch';
 
 export class PromotionService {
   static async createPromotion(payload: any): Promise<any> {
@@ -23,6 +24,25 @@ export class PromotionService {
         status: 201,
         message: "Promotion created",
         data,
+      };
+    } catch (error) {
+      return {
+        error,
+      };
+    }
+  }
+  static async getApplicablePromotion(payload: any): Promise<any> {
+    try {
+      let { id } = payload;
+
+      const availablePromotion = await fetch(`http://localhost:3000/user/${id}`);
+      if(!availablePromotion) throw { name : "NoPromotion" };
+
+
+      return {
+        status: 20,
+        message: "Promotion created",
+        data: availablePromotion,
       };
     } catch (error) {
       return {

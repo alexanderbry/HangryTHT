@@ -31,6 +31,26 @@ class PromotionController {
         next(error);
       }
     }
+    
+    static async getApplicablePromotion(
+      req: Request,
+      res: Response,
+      next: NextFunction
+    ): Promise<any> {
+      try {
+        const id = req.params
+        const data = await PromotionService.getApplicablePromotion(id);
+        if(data.error) throw data.error;
+              
+        res.status(data.status).json({
+          status: data.status,
+          message: data.message,
+          data: data.data,
+        });
+      } catch (error) {
+        next(error);
+      }
+    }
   }
   
   export default PromotionController;

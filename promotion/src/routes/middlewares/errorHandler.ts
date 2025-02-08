@@ -15,6 +15,10 @@ const errorHandler: ErrorRequestHandler = (err, req, res, next) => {
       status = 401;
       message = "Name already exists";
       break;
+    case "NoPromotion":
+      status = 401;
+      message = "No promotion available";
+      break;
     case "Not Found":
       status = 404;
       message = "Data not found";
