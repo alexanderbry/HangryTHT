@@ -1,0 +1,32 @@
+{
+  "name": "promotion",
+  "version": "0.0.1",
+  "description": "Awesome project developed with TypeORM.",
+  "type": "commonjs",
+  "devDependencies": {
+    "@types/cors": "^2.8.17",
+    "@types/express": "^5.0.0",
+    "@types/node": "^16.18.126",
+    "@types/node-fetch": "^2.6.12",
+    "joi": "^17.13.3",
+    "node-fetch": "^3.3.2",
+    "nodemon": "^3.1.9",
+    "ts-node": "^10.9.1",
+    "typescript": "^4.5.2"
+  },
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.7",
+    "express": "^4.21.2",
+    "pg": "^8.4.0",
+    "reflect-metadata": "^0.1.13",
+    "typeorm": "0.3.20"
+  },
+  "scripts": {
+    "start": "nodemon --exec ts-node src/index.ts",
+    "migration:generate": "npx typeorm-ts-node-commonjs migration:generate src/migrations/promotionMigration -d src/data-source.ts",
+    "migration:run": "npx typeorm-ts-node-commonjs migration:run -d src/data-source.ts",
+    "seed:run": "ts-node src/seeds/seeder.ts",
+    "typeorm": "typeorm-ts-node-commonjs"
+  }
+}
