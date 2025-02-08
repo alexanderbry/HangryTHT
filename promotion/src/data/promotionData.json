@@ -1,53 +1,57 @@
 [
-    {
-      "name": "CNY2025",
-      "type": "percentage",
-      "discount": 20,
-      "max_discount": 50000,
-      "min_order": 100000,
-      "start_date": "2025-01-01T00:00:00Z",
-      "end_date": "2025-01-10T23:59:59Z",
-      "max_usage": 1000
-    },
-    {
-      "name": "FLASH50K",
-      "type": "fixed",
-      "discount": 50000,
-      "max_discount": null,
-      "min_order": 200000,
-      "start_date": "2025-02-15T00:00:00Z",
-      "end_date": "2025-02-16T23:59:59Z",
-      "max_usage": 500
-    },
-    {
-      "name": "WEEKEND10",
-      "type": "percentage",
-      "discount": 10,
-      "max_discount": 30000,
-      "min_order": 50000,
-      "start_date": "2025-03-01T00:00:00Z",
-      "end_date": "2025-03-03T23:59:59Z",
-      "max_usage": 2000
-    },
-    {
-      "name": "CASHBACK25",
-      "type": "percentage",
-      "discount": 25,
-      "max_discount": 100000,
-      "min_order": 300000,
-      "start_date": "2025-04-10T00:00:00Z",
-      "end_date": "2025-04-20T23:59:59Z",
-      "max_usage": 750
-    },
-    {
-      "name": "MEGA100K",
-      "type": "fixed",
-      "discount": 100000,
-      "max_discount": null,
-      "min_order": 500000,
-      "start_date": "2025-05-05T00:00:00Z",
-      "end_date": "2025-05-15T23:59:59Z",
-      "max_usage": 300
-    }
-  ]
-  
+  {
+    "name": "CNY2025",
+    "type": "percentage",
+    "discount": 20,
+    "max_discount": 50000,
+    "min_order": 100000,
+    "start_date": "2025-01-01T00:00:00Z",
+    "end_date": "2025-01-10T23:59:59Z",
+    "max_usage": 1000,
+    "user_type": "new"
+  },
+  {
+    "name": "FLASH50K",
+    "type": "fixed",
+    "discount": 50000,
+    "max_discount": null,
+    "min_order": 200000,
+    "start_date": "2025-02-15T00:00:00Z",
+    "end_date": "2025-02-16T23:59:59Z",
+    "max_usage": 500,
+    "user_type": "loyal"
+  },
+  {
+    "name": "WEEKEND10",
+    "type": "percentage",
+    "discount": 10,
+    "max_discount": 30000,
+    "min_order": 50000,
+    "start_date": "2025-03-01T00:00:00Z",
+    "end_date": "2025-03-03T23:59:59Z",
+    "max_usage": 2000,
+    "user_type": "new"
+  },
+  {
+    "name": "CASHBACK25",
+    "type": "percentage",
+    "discount": 25,
+    "max_discount": 100000,
+    "min_order": 300000,
+    "start_date": "2025-04-10T00:00:00Z",
+    "end_date": "2025-04-20T23:59:59Z",
+    "max_usage": 750,
+    "user_type": "loyal"
+  },
+  {
+    "name": "MEGA100K",
+    "type": "fixed",
+    "discount": 100000,
+    "max_discount": null,
+    "min_order": 500000,
+    "start_date": "2025-05-05T00:00:00Z",
+    "end_date": "2025-05-15T23:59:59Z",
+    "max_usage": 300,
+    "user_type": "loyal"
+  }
+]

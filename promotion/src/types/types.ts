@@ -10,7 +10,24 @@ export interface IPromotion {
   max_usage: number;
 }
 
+export interface UserResponse {
+  status?: number;
+  message?: string | null;
+  data?: {
+    id: number;
+    email: string;
+    password: string;
+    fullName: string;
+    user_type: string;
+  };
+}
+
 export enum PromotionType {
-  PERCENTAGE = 'percentage',
-  FIXED = 'fixed',
+  PERCENTAGE = "percentage",
+  FIXED = "fixed",
+}
+
+export enum UserType {
+  NEW = "new",
+  LOYAL = "loyal",
 }

@@ -1,5 +1,5 @@
-import { Entity, PrimaryGeneratedColumn, Column } from 'typeorm';
-import { PromotionType } from '../types/types';
+import { Entity, PrimaryGeneratedColumn, Column } from "typeorm";
+import { PromotionType, UserType } from "../types/types";
 
 @Entity()
 export class Promotion {
@@ -9,7 +9,7 @@ export class Promotion {
   @Column({ nullable: false, unique: true })
   name: string;
 
-  @Column({ type: 'enum', enum: PromotionType })
+  @Column({ type: "enum", enum: PromotionType })
   type: PromotionType;
 
   @Column()
@@ -29,4 +29,7 @@ export class Promotion {
 
   @Column()
   max_usage: number;
+
+  @Column({ type: "enum", enum: UserType })
+  user_type: UserType;
 }

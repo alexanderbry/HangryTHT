@@ -1,13 +1,23 @@
-import { createPromotion, findByName } from "../repository/promotionRepository";
-import fetch from 'node-fetch';
+import { createPromotion, findByName, findPromotionByUserType } from "../repository/promotionRepository";
+import fetch from "node-fetch";
+import { UserResponse } from "../types/types";
 
 export class PromotionService {
   static async createPromotion(payload: any): Promise<any> {
     try {
-      let { name, type, discount, max_discount, min_order, start_date, end_date, max_usage } = payload;
+      let {
+        name,
+        type,
+        discount,
+        max_discount,
+        min_order,
+        start_date,
+        end_date,
+        max_usage,
+      } = payload;
 
       const isValidPromotion = await findByName(name);
-      if(isValidPromotion) throw { name : "NameTaken" };
+      if (isValidPromotion) throw { name: "NameTaken" };
 
       const data = await createPromotion({
         name,
@@ -31,18 +41,23 @@ export class PromotionService {
       };
     }
   }
+  
   static async getApplicablePromotion(payload: any): Promise<any> {
     try {
-      let { id } = payload;
+      let id = payload;
 
-      const availablePromotion = await fetch(`http://localhost:3000/user/${id}`);
-      if(!availablePromotion) throw { name : "NoPromotion" };
+      const user: UserResponse = await fetch(process.env.USER_APP + id).then((res) => res.json());
+      if (!user.data) throw { name: "Not Found" };
 
+      const userType = user.data.user_type;
 
+      const promotionsByUserType = await findPromotionByUserType(userType);
+      if (!promotionsByUserType) throw { name: "No Promotion" };
+      
       return {
-        status: 20,
-        message: "Promotion created",
-        data: availablePromotion,
+        status: 200,
+        message: null,
+        data: promotionsByUserType,
       };
     } catch (error) {
       return {

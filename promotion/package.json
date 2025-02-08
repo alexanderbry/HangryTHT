@@ -6,9 +6,11 @@
   "devDependencies": {
     "@types/cors": "^2.8.17",
     "@types/express": "^5.0.0",
+    "@types/jsonwebtoken": "^9.0.8",
     "@types/node": "^16.18.126",
     "@types/node-fetch": "^2.6.12",
     "joi": "^17.13.3",
+    "jsonwebtoken": "^9.0.2",
     "node-fetch": "^3.3.2",
     "nodemon": "^3.1.9",
     "ts-node": "^10.9.1",
