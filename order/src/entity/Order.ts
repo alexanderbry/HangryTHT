@@ -1,5 +1,5 @@
 import { Entity, PrimaryGeneratedColumn, Column, ManyToOne, ManyToMany, JoinTable } from "typeorm";
-import { Product } from "./Product";
+import { Cart } from "./Cart";
 
 @Entity()
 export class Order {
@@ -8,9 +8,6 @@ export class Order {
 
   @Column({ nullable: false })
   user_id: number;
-  
-  @Column()
-  total_price: number;
   
   @Column({ nullable: true })
   promotion: string;
@@ -21,7 +18,6 @@ export class Order {
   @Column({ nullable: false })
   final_price: number;
 
-  @ManyToMany(() => Product, { nullable: false })
-  @JoinTable()
-  products: Product[];
+  @ManyToOne(() => Cart, { nullable: false })
+  cart: Cart;
 }

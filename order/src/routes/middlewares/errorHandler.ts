@@ -11,12 +11,16 @@ const errorHandler: ErrorRequestHandler = (err, req, res, next) => {
       status = 401;
       message = "Please login first";
       break;
-    case "NameTaken":
-      status = 401;
-      message = "Name already exists";
+    case "FailedCreateCart":
+      status = 400;
+      message = "Failed to create cart";
+      break;
+    case "Product not found":
+      status = 400;
+      message = "There is a product that not existed";
       break;
     case "NoPromotion":
-      status = 401;
+      status = 400;
       message = "No promotion available";
       break;
     case "Not Found":
