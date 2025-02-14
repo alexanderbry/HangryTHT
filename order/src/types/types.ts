@@ -32,3 +32,22 @@ export interface UserResponse {
     user_type: string;
   };
 }
+
+export interface Promotion {
+  id: number;
+  name: string;
+  type: string;
+  discount: number;
+  max_discount: number;
+  min_order: number;
+  start_date: string;
+  end_date: string;
+  max_usage: number;
+  user_type: string;
+}
+
+export interface PromotionResponse {
+  status: number;
+  message: string | null;
+  data: Promotion[];
+}

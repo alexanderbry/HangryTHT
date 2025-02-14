@@ -23,6 +23,10 @@ const errorHandler: ErrorRequestHandler = (err, req, res, next) => {
       status = 400;
       message = "No promotion available";
       break;
+    case "Cart not found":
+      status = 400;
+      message = "Cart not found";
+      break;
     case "Not Found":
       status = 404;
       message = "Data not found";

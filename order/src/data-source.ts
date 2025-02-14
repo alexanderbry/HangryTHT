@@ -3,6 +3,7 @@ import { DataSource } from "typeorm";
 import { Order } from "./entity/Order";
 import { Product } from "./entity/Product";
 import { Cart } from "./entity/Cart";
+import { CartItem } from "./entity/CartItem";
 
 
 export const AppDataSource = new DataSource({
@@ -14,7 +15,7 @@ export const AppDataSource = new DataSource({
   database: process.env.DB_NAME || "db_order_Hangry",
   synchronize: true,
   logging: false,
-  entities: [Order, Product, Cart],
+  entities: [Order, Product, Cart, CartItem],
   migrations: ["src/migrations/*.ts"],
   subscribers: [],
 });

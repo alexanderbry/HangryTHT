@@ -3,8 +3,10 @@ import { AppDataSource } from "../data-source";
 import { Cart } from "../entity/Cart";
 import { Order } from "../entity/Order";
 import { Product } from "../entity/Product";
+import { CartItem } from "../entity/CartItem";
 
 const cartRepository: Repository<Cart> = AppDataSource.getRepository(Cart);
+const cartItemRepository: Repository<CartItem> = AppDataSource.getRepository(CartItem);
 const orderRepository: Repository<Order> = AppDataSource.getRepository(Order);
 const productRepository: Repository<Product> =
   AppDataSource.getRepository(Product);
@@ -15,6 +17,27 @@ export async function createCart(data: any): Promise<any> {
     const savedCart = await cartRepository.save(newCart);
 
     return savedCart;
+  } catch (error) {
+    return error;
+  }
+}
+
+export async function updateCart(data: any): Promise<any> {
+  try {
+    const savedCart = await cartRepository.save(data);
+
+    return savedCart;
+  } catch (error) {
+    return error;
+  }
+}
+
+export async function createCartItem(data: any): Promise<any> {
+  try {
+    const newCartItem = cartItemRepository.create(data);
+    const savedCartItem = await cartItemRepository.save(newCartItem);
+
+    return savedCartItem;
   } catch (error) {
     return error;
   }
@@ -36,6 +59,16 @@ export async function findProductById(id: any): Promise<any> {
     const product = await productRepository.findOne({ where: { id } });
 
     return product;
+  } catch (error) {
+    return error;
+  }
+}
+
+export async function findCartById(id: any): Promise<any> {
+  try {
+    const cart = await cartRepository.findOne({ where: { id } });
+
+    return cart;
   } catch (error) {
     return error;
   }

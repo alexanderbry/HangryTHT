@@ -7,6 +7,7 @@ const router = Router();
 router.use(authentication);
 
 router.post("/add-to-cart", OrderController.addToCart);
+router.post("/create", OrderController.placeOrder);
 
 router.use(errorHandler);
 
