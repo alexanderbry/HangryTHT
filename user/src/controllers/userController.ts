@@ -1,5 +1,9 @@
 import { Request, Response, NextFunction } from "express";
-import { getUserByIdSchema, loginSchema, registerSchema } from "../schemas/userSchema";
+import {
+  getUserByIdSchema,
+  loginSchema,
+  registerSchema,
+} from "../schemas/userSchema";
 import { UserService } from "../services/userService";
 
 class UserController {
@@ -20,6 +24,7 @@ class UserController {
       }
 
       const data = await UserService.register(value);
+      if (data.error) throw data.error;
 
       res.status(data.status).json({
         status: data.status,
@@ -48,6 +53,7 @@ class UserController {
       }
 
       const data = await UserService.login(value);
+      if (data.error) throw data.error;
 
       res.status(data.status).json({
         status: data.status,
@@ -76,6 +82,7 @@ class UserController {
       }
 
       const data = await UserService.getUserById(value);
+      if (data.error) throw data.error;
 
       res.status(data.status).json({
         status: data.status,

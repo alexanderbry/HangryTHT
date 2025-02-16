@@ -48,10 +48,10 @@ class OrderController {
     next: NextFunction
   ): Promise<any> {
     try {
-      const { id } = res.locals.loginSession;
+      const { id, token } = res.locals.loginSession;
       const { cartId, promotion } = req.body;
 
-      const payload = {user_id: id, cartId, promotion}
+      const payload = {user_id: id, cartId, promotion, token}
 
       const data = await OrderService.placeOrder(payload);
       if (data.error) throw data.error;
