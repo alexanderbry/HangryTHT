@@ -4,7 +4,7 @@ const errorHandler: ErrorRequestHandler = (err, req, res, next) => {
   let status = 500;
   let message = "Internal Server Error";
   let data = null;
-
+  
   switch (err.name) {
     case "TokenExpiredError":
     case "JsonWebTokenError":
@@ -16,7 +16,7 @@ const errorHandler: ErrorRequestHandler = (err, req, res, next) => {
       message = "Email already exists";
       break;
     case "InvalidEmail/Password":
-      status = 401;
+      status = 400;
       message = "Email or password is incorrect";
       break;
     case "RangeError":
@@ -32,6 +32,7 @@ const errorHandler: ErrorRequestHandler = (err, req, res, next) => {
       console.error(err);
       break;
   }
+  
   res.status(status).json({ status, message, data });
 };
 

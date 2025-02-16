@@ -6,7 +6,8 @@ import { Product } from "../entity/Product";
 import { CartItem } from "../entity/CartItem";
 
 const cartRepository: Repository<Cart> = AppDataSource.getRepository(Cart);
-const cartItemRepository: Repository<CartItem> = AppDataSource.getRepository(CartItem);
+const cartItemRepository: Repository<CartItem> =
+  AppDataSource.getRepository(CartItem);
 const orderRepository: Repository<Order> = AppDataSource.getRepository(Order);
 const productRepository: Repository<Product> =
   AppDataSource.getRepository(Product);
@@ -50,6 +51,7 @@ export async function createOrder(data: any): Promise<any> {
 
     return savedOrder;
   } catch (error) {
+    console.log("error", error);
     return error;
   }
 }
@@ -64,9 +66,15 @@ export async function findProductById(id: any): Promise<any> {
   }
 }
 
-export async function findCartById(id: any): Promise<any> {
+export async function findCartItem(id: any): Promise<any> {
   try {
-    const cart = await cartRepository.findOne({ where: { id } });
+    const cart = await cartItemRepository.find({
+      where: {
+        cart: {
+          id,
+        },
+      },
+    });
 
     return cart;
   } catch (error) {
