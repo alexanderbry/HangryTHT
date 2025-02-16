@@ -1,0 +1,63 @@
+[
+    {
+      "id": 1,
+      "name": "Nasi Goreng",
+      "price": 30000,
+      "stock": 50
+    },
+    {
+      "id": 2,
+      "name": "Mie Ayam",
+      "price": 25000,
+      "stock": 40
+    },
+    {
+      "id": 3,
+      "name": "Sate Ayam",
+      "price": 35000,
+      "stock": 30
+    },
+    {
+      "id": 4,
+      "name": "Bakso",
+      "price": 27000,
+      "stock": 35
+    },
+    {
+      "id": 5,
+      "name": "Rendang",
+      "price": 50000,
+      "stock": 20
+    },
+    {
+      "id": 6,
+      "name": "Ayam Geprek",
+      "price": 28000,
+      "stock": 45
+    },
+    {
+      "id": 7,
+      "name": "Gado-Gado",
+      "price": 25000,
+      "stock": 25
+    },
+    {
+      "id": 8,
+      "name": "Pempek",
+      "price": 300000,
+      "stock": 30
+    },
+    {
+      "id": 9,
+      "name": "Bubur Manado",
+      "price": 20000,
+      "stock": 40
+    },
+    {
+      "id": 10,
+      "name": "Soto Ayam",
+      "price": 28000,
+      "stock": 35
+    }
+  ]
+  
