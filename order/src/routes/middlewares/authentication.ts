@@ -24,6 +24,7 @@ const authentication = async (
 
     res.locals.loginSession = {
       id: user.data.id,
+      token: token,
     };
 
     next();

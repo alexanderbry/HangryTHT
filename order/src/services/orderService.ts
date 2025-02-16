@@ -3,7 +3,7 @@ import {
   createCart,
   createCartItem,
   createOrder,
-  findCartById,
+  findCartItem,
   findProductById,
   updateCart,
 } from "../repository/orderRepository";
@@ -54,42 +54,54 @@ export class OrderService {
 
   static async placeOrder(payload: any): Promise<any> {
     try {
-      const { user_id, cartId, promotion } = payload;
+      const { user_id, cartId, promotion, token } = payload;
 
-      const cart = await findCartById(cartId);
+      let discount_applied = 0;
+      let final_price = 0;
+      
+      const cart = await findCartItem(cartId);
       if (!cart) throw { name: `Cart not found` };
 
+      const cartTotalPrice: number = cart.reduce((acc: number, cartItem: { total_price: number }) => acc + cartItem.total_price, 0);
+
       const applicablePromotion = (await fetch(
-        `http://localhost:3001/promotion`
+        `http://localhost:3001/promotion/user-promotion`, {
+          headers: {
+            authorization: `Bearer ${token}`,
+            "Content-Type": "application/json",
+          }
+        }
       ).then((res) => res.json())) as PromotionResponse;
+
+      if(applicablePromotion.status !== 200) throw { name: `NoPromotion` };
 
       const promotionData = applicablePromotion.data.find(
         (promo) => promo.name === promotion
       );
-      if (!promotionData) throw { name: `Promotion not found` };
+      if (!promotionData) throw { name: `NoPromotion` };
 
       if (promotionData.type === "percentage") {
-        promotionData.discount =
-          (cart.total_price * promotionData.discount) / 100;
+        discount_applied = (cartTotalPrice * promotionData.discount) / 100;
       } else {
-        promotionData.discount = promotionData.discount;
+        discount_applied = promotionData.discount;
       }
 
-      const discount_applied = promotionData.discount;
-      const final_price = cart.total_price - promotionData.discount;
+      final_price = cartTotalPrice - discount_applied;
 
       const data = await createOrder({
         user_id,
         promotion,
         discount_applied,
         final_price,
-        products: cart.products,
+        cart : {
+          id: cartId
+        }
       });
 
       return {
         status: 201,
         message: "Order placed",
-        data: data,
+        data: null,
       };
     } catch (error) {
       return {
