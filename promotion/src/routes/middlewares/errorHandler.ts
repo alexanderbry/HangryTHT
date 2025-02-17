@@ -12,11 +12,11 @@ const errorHandler: ErrorRequestHandler = (err, req, res, next) => {
       message = "Please login first";
       break;
     case "NameTaken":
-      status = 401;
+      status = 400;
       message = "Name already exists";
       break;
     case "NoPromotion":
-      status = 401;
+      status = 400;
       message = "No promotion available";
       break;
     case "Not Found":

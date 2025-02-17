@@ -6,7 +6,7 @@ const router = Router();
 
 router.use(authentication)
 
-router.get("/", PromotionController.getApplicablePromotion);
+router.get("/user-promotion", PromotionController.getApplicablePromotion);
 router.post("/create", PromotionController.createPromotion);
 
 router.use(errorHandler);

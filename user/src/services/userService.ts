@@ -25,7 +25,7 @@ export class UserService {
       return {
         status: 201,
         message: "User registered successfully",
-        data: data,
+        data: null,
       };
     } catch (error) {
       return {
