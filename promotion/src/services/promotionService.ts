@@ -33,7 +33,7 @@ export class PromotionService {
       return {
         status: 201,
         message: "Promotion created",
-        data,
+        data: null,
       };
     } catch (error) {
       return {
